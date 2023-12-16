@@ -11,7 +11,7 @@ const Autocomplete = () => {
   const words = ['apple', 'app', 'apricot', 'banana', 'bat'];
   words.forEach((word) => trieRef.current.insert(word));
 
-  const debouncedInput = useDebounce(input, 5000); // Adjust the debounce time as needed
+  const debouncedInput = useDebounce(input, 500); // Adjust the debounce time as needed
 
   useEffect(() => {
     // Get autocomplete suggestions from the trie using debouncedInput
