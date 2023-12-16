@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import Trie from '../Trie/Trie';
-import useDebounce from '../customHook/UseDebounce';
+import React, { useState, useEffect } from "react";
+import Trie from "../Trie/Trie";
+import useDebounce from "../customHook/UseDebounce";
 
 const Autocomplete = () => {
-  const [input, setInput] = useState('');
+  const [input, setInput] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const trieRef = React.useRef(new Trie()); // Use a ref to keep the Trie instance constant across renders
 
   // Example: Insert words into the trie
-  const words = ['apple', 'app', 'apricot', 'banana', 'bat', 'love'];
+  const words = ["apple", "app", "apricot", "banana", "bat", "love"];
   words.forEach((word) => trieRef.current.insert(word));
 
   const debouncedInput = useDebounce(input, 500); // Adjust the debounce time as needed
@@ -17,16 +17,17 @@ const Autocomplete = () => {
     // Get autocomplete suggestions from the trie using debouncedInput
     const autocompleteSuggestions = trieRef.current.search(debouncedInput);
     setSuggestions(autocompleteSuggestions);
+
   }, [debouncedInput, trieRef, setSuggestions]);
 
   const handleInputChange = (e) => {
     setInput(e.target.value);
-    setSuggestions([])
+    setSuggestions([]);
   };
 
   const handleSuggestionClick = (suggestion) => {
     setInput(suggestion);
-    setSuggestions([]); // Clear suggestions after selecting one
+    setSuggestions([]); // Clear suggestions before selecting one
   };
 
   return (
