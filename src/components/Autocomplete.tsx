@@ -8,7 +8,7 @@ const Autocomplete = () => {
   const trieRef = React.useRef(new Trie()); // Use a ref to keep the Trie instance constant across renders
 
   // Example: Insert words into the trie
-  const words = ['apple', 'app', 'apricot', 'banana', 'bat'];
+  const words = ['apple', 'app', 'apricot', 'banana', 'bat', 'love'];
   words.forEach((word) => trieRef.current.insert(word));
 
   const debouncedInput = useDebounce(input, 500); // Adjust the debounce time as needed
